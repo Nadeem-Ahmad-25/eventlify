@@ -54,15 +54,16 @@ export async function POST(req: Request) {
   const { id } = evt.data;
   const eventType = evt.type;
  
-  if(eventType === 'user.created'){
-    const {id,email_addresses, image_url, first_name, last_name, username}= evt.data;
+  if(eventType === 'user.created') {
+    const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
+
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
       username: username!,
       FirstName: first_name,
       LastName: last_name,
-      Photo: image_url
+      photo: image_url,
     }
 
     const newUser = await createUser(user);
@@ -74,14 +75,10 @@ export async function POST(req: Request) {
         }
       })
     }
-    /*
-    when we created a model of a user in the db we specified a clerk id, thats so we can make a clerk connection as our db connection
-    but at the same here we are making a db connection to our clerk model by defining the userid and passing it over as public metadata to our clerk user
-    that way always know what we are workng with. 
 
-    */
     return NextResponse.json({ message: 'OK', user: newUser })
   }
+
   if (eventType === 'user.updated') {
     const {id, image_url, first_name, last_name, username } = evt.data
 
@@ -89,7 +86,7 @@ export async function POST(req: Request) {
       FirstName: first_name,
       LastName: last_name,
       username: username!,
-      Photo: image_url,
+      photo: image_url,
     }
 
     const updatedUser = await updateUser(id, user)
