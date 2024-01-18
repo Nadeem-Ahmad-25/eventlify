@@ -6,14 +6,14 @@ export interface IEvent extends Document {
     description: string;
     location?: string;
     createdAt: Date;
-    imageURL: string;
-    StartDateTime: Date;
+    imageUrl: string;
+    startDateTime: Date;
     endDateTime: Date;
-    Price?: string;
+    price: string;
     isFree: boolean;
     url?: string;
     category: {_id: string, name: string} 
-    Organizer: {_id: string, FirstName: string, LastName: string} 
+    organizer: {_id: string, FirstName: string, LastName: string} 
 }
 
 const EventSchema = new Schema({

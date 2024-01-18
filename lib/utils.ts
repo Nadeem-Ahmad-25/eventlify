@@ -87,7 +87,14 @@ export function removeKeysFromQuery({ params, keysToRemove }: RemoveUrlQueryPara
   )
 }
 
-export const handleError = (error: unknown) => {
-  console.error(error)
-  throw new Error(typeof error === 'string' ? error : JSON.stringify(error))
+export const handleError = (error: unknown) => {  if (typeof error === 'string') {
+  console.error(error);
+  // Handle other types of errors here if needed
+} else if (error instanceof Error && error.message.includes('NEXT_REDIRECT')) {
+  console.warn('NEXT_REDIRECT error:', error.message);
+  // Handle the redirect error gracefully without throwing
+} else {
+  console.error(error);
+  throw new Error(JSON.stringify(error));
+}
 }
