@@ -223,8 +223,8 @@ const EventForm = ({userId, type, eventId, event}: EventFormTypes) => {
             <FormItem className='w-full'>
               <FormControl>
                 <div className='flex-center w-full h-[54px] overflow-hidden rounded-full bg-grey-50 px-4 py-2'>
-                    <Image src="/assets/icons/dollar.svg" alt='price-tag' width={24} height={24}></Image>
-                
+                    {/* <Image src="/assets/icons/dollar.svg" alt='price-tag' width={24} height={24}></Image> */}
+                Rs.
                 <Input type='number' placeholder="Price" {...field} className='p-regular-15 border-0 outline-offset-0 bg-grey-50 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0 '/>
                 <FormField
           control={form.control}
